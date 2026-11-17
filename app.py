@@ -43,17 +43,18 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.fig, self.ax = plt.subplots(figsize=(5, 4))
-        self.ax.set_title("Revenues for different temperatures")
-        self.ax.set_xlabel('Temperature')
-        self.ax.set_ylabel('Revenue')
-        self.ax.set_xlim(0, 40)
-        self.ax.set_ylim(0, 1000)
         self.ax.spines['top'].set_visible(False)
         self.ax.spines['right'].set_visible(False)
+        self.draw_initial_graph()
         self.canvas = FigureCanvasQTAgg(self.fig)
         layout.addWidget(self.canvas, stretch=1)
 
         self.setCentralWidget(central_widget)
+
+    def draw_initial_graph(self):
+        data_x = np.linspace(-10, 10, 21)
+        data_y = data_x**2
+        self.ax.plot(data_x, data_y)
 
     def load_file(self):
         selected_file, _ = QFileDialog.getOpenFileName(
@@ -75,7 +76,10 @@ class MainWindow(QMainWindow):
         self.draw_graph()
 
     def draw_graph(self):
-
+        self.ax.clear()
+        self.ax.set_title("Revenues for different temperatures")
+        self.ax.set_xlabel('Temperature', fontsize=14)
+        self.ax.set_ylabel('Revenue', fontsize=14)
         self.ax.scatter(self.temperatures, self.revenues, label='Data', s=1,
                 color='blue', marker='x')
 

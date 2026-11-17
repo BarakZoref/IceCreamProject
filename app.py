@@ -47,6 +47,8 @@ class MainWindow(QMainWindow):
         self.ax.set_ylabel('Revenue')
         self.ax.set_xlim(0, 40)
         self.ax.set_ylim(0, 1000)
+        self.ax.spines['top'].set_visible(False)
+        self.ax.spines['right'].set_visible(False)
         self.canvas = FigureCanvasQTAgg(self.fig)
         layout.addWidget(self.canvas, stretch=1)
 

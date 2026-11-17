@@ -2,6 +2,8 @@ import sys
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+import numpy as np
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
@@ -40,9 +42,8 @@ class MainWindow(QMainWindow):
         self.about_button.clicked.connect(self.about)
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
-        self.figure = Figure()
-        self.axes = self.figure.add_subplot(111)
-        self.canvas = FigureCanvasQTAgg(self.figure)
+        self.fig, self.ax = plt.subplots(figsize=(5, 4))
+        self.canvas = FigureCanvasQTAgg(self.fig)
         layout.addWidget(self.canvas, stretch=1)
 
         self.setCentralWidget(central_widget)
@@ -64,6 +65,18 @@ class MainWindow(QMainWindow):
                 parts = line.split(',')
                 self.temperatures.append(float(parts[0]))
                 self.revenues.append(int(parts[1]))
+        self.draw_graph()
+
+    def draw_graph(self):
+
+        self.ax.scatter(self.temperatures, self.revenues, label='Data', s=1,
+                color='blue', marker='x')
+
+        # Add Labels and Legend
+        self.ax.set_xlabel('X')
+        self.ax.set_ylabel('Y')
+        self.ax.legend()
+        self.canvas.draw()
 
     def about(self):
         pass

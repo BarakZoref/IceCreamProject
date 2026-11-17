@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT
 from matplotlib.figure import Figure
@@ -35,12 +36,16 @@ class MainWindow(QMainWindow):
 
         central_widget = QWidget()
         layout = QVBoxLayout(central_widget)
+        layout.setContentsMargins(24, 20, 24, 24)
+        layout.setSpacing(12)
 
         self.load_button = QPushButton("Load File")
+        self.load_button.setObjectName("loadButton")
         self.load_button.clicked.connect(self.load_file)
         layout.addWidget(self.load_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.about_button = QPushButton("About")
+        self.about_button.setObjectName("aboutButton")
         self.about_button.clicked.connect(self.about)
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
@@ -112,6 +117,10 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    stylesheet_path = Path(__file__).with_name("style.qss")
+    with stylesheet_path.open(encoding="utf-8") as stylesheet_file:
+        app.setStyleSheet(stylesheet_file.read())
+
     window = MainWindow()
     window.show()
     sys.exit(app.exec())

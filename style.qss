@@ -1,0 +1,65 @@
+QWidget {
+    color: #233149;
+    font-family: "Segoe UI";
+    font-size: 10pt;
+}
+
+QMainWindow {
+    background-color: #f3f6fb;
+}
+
+QPushButton {
+    min-width: 130px;
+    min-height: 20px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+QPushButton#loadButton {
+    color: white;
+    background-color: #3569e8;
+}
+
+QPushButton#loadButton:hover {
+    background-color: #2857ca;
+}
+
+QPushButton#loadButton:pressed {
+    background-color: #2148a8;
+}
+
+QPushButton#aboutButton {
+    color: #344967;
+    background-color: #e6edf7;
+    border: 1px solid #d5dfed;
+}
+
+QPushButton#aboutButton:hover {
+    background-color: #dce6f3;
+}
+
+QToolBar {
+    spacing: 5px;
+    padding: 5px;
+    background-color: #eaf0f8;
+    border: 1px solid #dce4ef;
+    border-radius: 8px;
+}
+
+QToolButton {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+QToolButton:hover {
+    background-color: #d6e2f2;
+}
+
+QToolBar::separator {
+    width: 1px;
+    margin: 4px 5px;
+    background-color: #cbd6e5;
+}

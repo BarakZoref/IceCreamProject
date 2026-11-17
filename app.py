@@ -43,6 +43,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.fig, self.ax = plt.subplots(figsize=(5, 4))
+        self.ax.set_title("Revenues for different temperatures")
         self.ax.set_xlabel('Temperature')
         self.ax.set_ylabel('Revenue')
         self.ax.set_xlim(0, 40)

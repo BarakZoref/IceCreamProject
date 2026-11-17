@@ -1,6 +1,6 @@
 import sys
 
-from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from About import AboutWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -26,6 +27,7 @@ class MainWindow(QMainWindow):
         self.temperatures = []
         self.revenues = []
         self.selected_file = ''
+        self.about_window = AboutWindow()
  
 
         self.setWindowTitle("Ice Cream Project")
@@ -47,6 +49,8 @@ class MainWindow(QMainWindow):
         self.ax.spines['right'].set_visible(False)
         self.draw_initial_graph()
         self.canvas = FigureCanvasQTAgg(self.fig)
+        self.toolbar = NavigationToolbar2QT(self.canvas, self)
+        layout.addWidget(self.toolbar)
         layout.addWidget(self.canvas, stretch=1)
 
         self.setCentralWidget(central_widget)
@@ -102,8 +106,8 @@ class MainWindow(QMainWindow):
         # Add Labels and Legend
         self.canvas.draw()
 
-    def about(self):
-        pass
+    def about(self) -> None:
+        self.about_window.show()
 
 
 def main():

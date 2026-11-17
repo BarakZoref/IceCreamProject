@@ -83,6 +83,22 @@ class MainWindow(QMainWindow):
         self.ax.scatter(self.temperatures, self.revenues, label='Data', s=1,
                 color='blue', marker='x')
 
+        # 1 is the degree of the polynomial
+        coefficients = np.polyfit(self.temperatures, self.revenues, 1) 
+
+        # Creating a line function
+        line_function = np.poly1d(coefficients) 
+        line_x = np.linspace(0, 40, len(self.revenues))
+        line_y = line_function(line_x)
+
+        self.ax.plot(line_x, line_y, color='red', label='Trend Line')
+        self.ax.text(0.02, 0.85,
+                f'y = {coefficients[0]:.2f}x + {coefficients[1]:.2f}',
+                color='red',
+                transform=self.ax.transAxes,
+                va='top')
+        self.ax.legend(loc='upper left')
+        
         # Add Labels and Legend
         self.canvas.draw()
 

@@ -50,6 +50,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.fig, self.ax = plt.subplots(figsize=(5, 4))
+        self.fig.subplots_adjust(left=0.17, bottom=0.20, right=0.96, top=0.88)
         self.ax.spines['top'].set_visible(False)
         self.ax.spines['right'].set_visible(False)
         self.draw_initial_graph()
@@ -101,7 +102,7 @@ class MainWindow(QMainWindow):
         line_y = line_function(line_x)
 
         self.ax.plot(line_x, line_y, color='red', label='Trend Line')
-        self.ax.text(0.02, 0.85,
+        self.ax.text(0.02, 0.77,
                 f'y = {coefficients[0]:.2f}x + {coefficients[1]:.2f}',
                 color='red',
                 transform=self.ax.transAxes,

@@ -43,6 +43,10 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.about_button, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         self.fig, self.ax = plt.subplots(figsize=(5, 4))
+        self.ax.set_xlabel('Temperature')
+        self.ax.set_ylabel('Revenue')
+        self.ax.set_xlim(0, 40)
+        self.ax.set_ylim(0, 1000)
         self.canvas = FigureCanvasQTAgg(self.fig)
         layout.addWidget(self.canvas, stretch=1)
 
@@ -73,9 +77,6 @@ class MainWindow(QMainWindow):
                 color='blue', marker='x')
 
         # Add Labels and Legend
-        self.ax.set_xlabel('X')
-        self.ax.set_ylabel('Y')
-        self.ax.legend()
         self.canvas.draw()
 
     def about(self):
